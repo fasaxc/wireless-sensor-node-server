@@ -1,0 +1,10 @@
+.downloads
+.installed.cfg
+_env
+bin
+develop-eggs
+eggs
+bootstrap.py
+*.pyc
+data
+
