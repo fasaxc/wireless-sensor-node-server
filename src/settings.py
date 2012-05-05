@@ -14,9 +14,11 @@ def ensure_dir_exists(d):
 
 # Calculate useful directories relative to the project.
 _MY_DIR = os.path.dirname(__file__)
+STATIC_DIR = os.path.join(_MY_DIR, "static")
 PROJECT_DIR = os.path.abspath(os.path.join(_MY_DIR, ".."))
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
 ensure_dir_exists(DATA_DIR)
 
 DATABASE = 'sqlite:///%s/db.sqlite' % DATA_DIR
 DATABASE_DEBUG = False
+TORNADO_DEBUG = False

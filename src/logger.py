@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import logging
+import time
 
 import serial
 
@@ -32,12 +33,16 @@ def standalone():
                     db.commit();
                     log.info("Read line: %r", line)
         except Exception:
-            pass
+            log.exception("Exception")
+            time.sleep(20)
 
 
 if __name__ == '__main__':
     handler = logging.StreamHandler()
     handler.setLevel(logging.DEBUG)
-    log.setLevel(logging.DEBUG)
     log.addHandler(handler)
+    handler = logging.FileHandler("/tmp/sensor-logger.log")
+    handler.setLevel(logging.DEBUG)
+    log.addHandler(handler)
+    log.setLevel(logging.DEBUG)
     standalone()
