@@ -37,7 +37,7 @@ $(window).load(function(){
           'title':'Temperature',
           'width': 900,
           'height':600,
-          'hAxis': {'format': 'MMM d ha',
+          'hAxis': {'format': 'd MMM ha',
                     'slanted_text': true}
       };
 
