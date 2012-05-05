@@ -35,8 +35,8 @@ $(window).load(function(){
       // Set chart options
       var options = {
           'title':'Temperature',
-          'width': 900,
-          'height':600,
+          'width': 1170,
+          'height': 800,
           'hAxis': {'format': 'd MMM ha',
                     'slanted_text': true}
       };
