@@ -35,7 +35,8 @@ $(window).load(function(){
       // Set chart options
       var options = {'title':'Temperature',
                      'width': 900,
-                     'height':600};
+                     'height':600,
+                     'hAxis.format': 'MMM d HH:mm'};
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
