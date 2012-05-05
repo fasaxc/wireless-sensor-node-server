@@ -42,7 +42,7 @@ $(window).load(function(){
       };
 
       // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
       chart.draw(chartData, options);
     })
     .error(function() {
