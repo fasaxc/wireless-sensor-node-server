@@ -27,7 +27,7 @@ $(window).load(function(){
       
       var readings = data["readings"];
       for (var i = 0; i < readings.length; i++) {
-        readings[i][0] = new Date(readings[i][0]);
+        readings[i][0] = new Date(readings[i][0]*1000);
       }
       
       chartData.addRows(readings);
