@@ -1,3 +1,18 @@
-#chart_div {
+.container {
+  position: relative;
+}
+
+.chart_div {
   height: 760px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#chart_div0 {
+  z-index: 100;
+}
+#chart_div1 {
+  z-index: 50;
 }

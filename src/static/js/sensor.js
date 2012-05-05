@@ -16,8 +16,8 @@ $(window).load(function(){
   // ---------------------------------------------------------------------------
   // Startup.
   // ---------------------------------------------------------------------------
-  function drawChart() {
-
+  
+  function getData(success) {
     jQuery.getJSON("/readings", null, function(data) {
       log("Downloaded " + data["readings"].length + " readings");
       window.sensors["data"] = data;
@@ -32,24 +32,47 @@ $(window).load(function(){
       
       chartData.addRows(readings);
       
-      // Set chart options
-      var options = {
-          'title':'Temperature',
-          'backgroundColor': 'whiteSmoke',
-          'height': 760,
-          'scaleType': 'maximized',
-          'hAxis': {'format': 'd MMM ha',
-                    'slanted_text': true}
-      };
-
-      // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
-      chart.draw(chartData, options);
+      success(chartData);
     })
     .error(function() {
       log("Failed to load readings");
     });
   }
+
+  // Set chart options
+  var options = {
+      'title':'Temperature',
+      'backgroundColor': 'whiteSmoke',
+      'height': 760,
+      'scaleType': 'maximized',
+      'hAxis': {'format': 'd MMM ha',
+                'slanted_text': true}
+  };
   
-  drawChart();
+  var chartBuffers = [
+    {"chart": new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div0')),
+     "element": "#chart_div0"},
+    {"chart": new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div1')),
+     "element": "#chart_div1"},
+  ];
+  var currentChart = 0;
+  
+  function redrawChart() {
+    getData(function(chartData) {
+      log("Redrawing chart");
+      var oldBuffer = chartBuffers[currentChart];
+      currentChart = (currentChart + 1) % chartBuffers.length;
+      var newBuffer = chartBuffers[currentChart];
+      
+      newBuffer.chart.draw(chartData, options);
+      setTimeout(function(){
+        log("Flipping banks");
+        $(oldBuffer.element).css("z-index", "50");
+        $(newBuffer.element).css("z-index", "100");
+      }, 2000);
+    });
+  }
+  
+  redrawChart();
+  setInterval(redrawChart, 30000);
 });
