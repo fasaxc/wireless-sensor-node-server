@@ -1,0 +1,8 @@
+check process logger with pidfile /home/ubuntu/server.pid
+  start program = "/home/ubuntu/git/sensor-server/start_logger.sh"
+  stop program = "/home/ubuntu/git/sensor-server/stop_logger.sh"
+
+check process sensorserver with pidfile /home/ubuntu/server.pid
+  start program = "/home/ubuntu/git/sensor-server/start_server.sh"
+  stop program = "/home/ubuntu/git/sensor-server/stop_server.sh"
+
