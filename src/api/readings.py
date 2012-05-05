@@ -1,4 +1,4 @@
-# Copyright (c) Metaswitch Networks 2012-2012. All rights reserved.
+# Copyright (c)Shaun Crampton 2012-2012. All rights reserved.
 
 import time
 
