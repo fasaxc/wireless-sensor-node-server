@@ -35,6 +35,7 @@ $(window).load(function(){
       // Set chart options
       var options = {
           'title':'Temperature',
+          'backgroundColor': 'whiteSmoke',
           'width': 1170,
           'height': 800,
           'hAxis': {'format': 'd MMM ha',
