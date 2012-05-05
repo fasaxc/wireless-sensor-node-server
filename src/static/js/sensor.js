@@ -22,9 +22,15 @@ $(window).load(function(){
       log("Downloaded " + data["readings"].length + " readings");
       window.sensors["data"] = data;
       var chartData = new google.visualization.DataTable();
-      chartData.addColumn('number', 'Date');
+      chartData.addColumn('datetime', 'Date');
       chartData.addColumn('number', 'Temperature/C');
-      chartData.addRows(data["readings"]);
+      
+      var readings = data["readings"];
+      for (var i = 0; i < readings.length; i++) {
+        readings[i][0] = new Date(readings[i][0]);
+      }
+      
+      chartData.addRows(readings);
       
       // Set chart options
       var options = {'title':'Temperature',
