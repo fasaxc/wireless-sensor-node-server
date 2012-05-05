@@ -36,8 +36,7 @@ $(window).load(function(){
       var options = {
           'title':'Temperature',
           'backgroundColor': 'whiteSmoke',
-          'width': 1170,
-          'height': 800,
+          'height': 760,
           'hAxis': {'format': 'd MMM ha',
                     'slanted_text': true}
       };
