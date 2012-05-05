@@ -37,7 +37,8 @@ $(window).load(function(){
           'title':'Temperature',
           'width': 900,
           'height':600,
-          'hAxis': {'format': 'MMM d HH:mm'}
+          'hAxis': {'format': 'MMM d ha',
+                    'slanted_text': true}
       };
 
       // Instantiate and draw our chart, passing in some options.
