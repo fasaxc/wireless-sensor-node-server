@@ -15,7 +15,10 @@ class Reading(BaseModel):
     __tablename__ = "readings"
 
     id = Column(Integer(), primary_key=True, nullable=False)
-    created_at = Column(DateTime(), nullable=False, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime(),
+                        nullable=False,
+                        default=datetime.datetime.utcnow,
+                        index=True)
     node_id = Column(Integer(), nullable=False)
     seq_no = Column(Integer(), nullable=False)
     reading_type = Column(String(10), nullable=False)
