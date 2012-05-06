@@ -23,7 +23,7 @@ Setup
 On Ubuntu, do this:
 
 * sudo apt-get install git-core python python-dbg python-dev python-virtualenv 
-  ubuntu-dev-tools monit sqlite3 iptables-persistent
+  ubuntu-dev-tools monit sqlite3 iptables-persistent python2.6-dev
 * as root, edit /etc/monit/monitrc, add lines "set daemon 10" and "include /etc/monit/conf.d/*"
 * as root copy the file monitrc into /etc/monit/conf.d
 * as root, edit /etc/defaults/monit and set the start variable to 1.
