@@ -3,16 +3,25 @@
 import time
 
 import tornado
+import cjson
 
 from data import Session, Reading
 
 class ReadingsHandler(tornado.web.RequestHandler):
     def get(self):
         sess = Session()
-        result = []
+
+        self.set_header("Content-Type", "application/json")
+
+        self.write('{"num_nodes":2,"readings":[')
+        i = 0
         for r in sess.query(Reading).order_by(Reading.created_at):
-            result.append([time.mktime(r.created_at.timetuple()),
-                           r.reading if r.node_id == 1 else None,
-                           r.reading if r.node_id == 2 else None])
-        self.finish({"num_nodes": 2,
-                     "readings": result})
+            self.write(("" if i == 0 else ",") +
+                       cjson.encode([time.mktime(r.created_at.timetuple()),
+                                     r.reading if r.node_id == 1 else None,
+                                     r.reading if r.node_id == 2 else None]))
+            i += 1
+            if (i % 20) == 0:
+                self.flush()
+
+        self.finish("]}")
