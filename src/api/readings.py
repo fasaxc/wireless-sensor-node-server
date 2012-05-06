@@ -11,5 +11,8 @@ class ReadingsHandler(tornado.web.RequestHandler):
         sess = Session()
         result = []
         for r in sess.query(Reading).order_by(Reading.created_at):
-            result.append([time.mktime(r.created_at.timetuple()), r.reading])
-        self.finish({"readings": result})
+            result.append([time.mktime(r.created_at.timetuple()),
+                           r.reading if r.node_id == 1 else None,
+                           r.reading if r.node_id == 2 else None])
+        self.finish({"num_nodes": 2,
+                     "readings": result})

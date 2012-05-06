@@ -23,7 +23,8 @@ $(window).load(function(){
       window.sensors["data"] = data;
       var chartData = new google.visualization.DataTable();
       chartData.addColumn('datetime', 'Date');
-      chartData.addColumn('number', 'Temperature/C');
+      chartData.addColumn('number', 'Node 1 Temperature/C');
+      chartData.addColumn('number', 'Node 2 Temperature/C');
       
       var readings = data["readings"];
       for (var i = 0; i < readings.length; i++) {
