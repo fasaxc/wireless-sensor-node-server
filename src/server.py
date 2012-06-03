@@ -37,4 +37,5 @@ if __name__ == '__main__':
     handler.setLevel(logging.DEBUG)
     log.addHandler(handler)
     log.setLevel(logging.DEBUG)
+    log.info("Starting up")
     standalone()
