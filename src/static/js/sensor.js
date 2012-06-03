@@ -25,6 +25,7 @@ $(window).load(function(){
       chartData.addColumn('datetime', 'Date');
       chartData.addColumn('number', 'Node 1 Temperature/C');
       chartData.addColumn('number', 'Node 2 Temperature/C');
+      chartData.addColumn('number', 'Node 3 Temperature/C');
       
       var readings = data["readings"];
       for (var i = 0; i < readings.length; i++) {
