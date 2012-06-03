@@ -14,7 +14,7 @@ class ReadingsHandler(tornado.web.RequestHandler):
 
         self.set_header("Content-Type", "application/json")
 
-        self.write('{"num_nodes":2,"readings":[')
+        self.write('{"num_nodes":3,"readings":[')
         i = 0
         last_timestamp = {}
         now = datetime.datetime.utcnow()
