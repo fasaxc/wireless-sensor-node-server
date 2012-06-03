@@ -15,11 +15,14 @@ class ReadingsHandler(tornado.web.RequestHandler):
 
         self.write('{"num_nodes":2,"readings":[')
         i = 0
-        for r in sess.query(Reading).order_by(Reading.created_at):
+        for r in (sess.query(Reading).
+                       filter(Reading.checksum_calc == Reading.checksum_sent).
+                       order_by(Reading.created_at)):
             self.write(("" if i == 0 else ",") +
                        cjson.encode([time.mktime(r.created_at.timetuple()),
                                      r.reading if r.node_id == 1 else None,
-                                     r.reading if r.node_id == 2 else None]))
+                                     r.reading if r.node_id == 2 else None,
+                                     r.reading if r.node_id == 3 else None]))
             i += 1
             if (i % 20) == 0:
                 self.flush()
