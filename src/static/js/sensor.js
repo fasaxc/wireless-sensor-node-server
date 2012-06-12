@@ -76,5 +76,5 @@ $(window).load(function(){
   }
   
   redrawChart();
-  setInterval(redrawChart, 30000);
+  setInterval(redrawChart, 4 * 60 * 1000);
 });
