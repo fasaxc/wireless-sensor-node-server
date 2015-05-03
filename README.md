@@ -18,12 +18,20 @@ There are sample upstart job config files in the upstart directory.
 To install:
 ==========
 
+* Edit `wirelesssensor/settings.py` to set the location of the database.
+* Install the package:
+
+```
 cd wireless-sensor-node-server
 sudo pip install .
+```
 
-# If using upstart...
+* If using upstart:
+
+```
 sudo cp upstart/* /etc/init
 sudo start wireless-sensor-logger
 sudo start wireless-sensor-server
+```
 
-Connect to http://<your server>:8888
+* Connect to http://\<your server>:8888
