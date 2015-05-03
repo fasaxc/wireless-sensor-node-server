@@ -13,24 +13,17 @@ There are three components:
 * the UI, in src/static, which is a JavaScript app that uses Google's chart 
   API to display the data.
   
-I use Monit to monitor and start the server and iptables to redirect port 80
-to port 8888, where the tornado server runs.  (This allows running the server as
-a non-root user.)
+There are sample upstart job config files in the upstart directory.
 
-Setup
-=====
+To install:
+==========
 
-On Ubuntu, do this:
+cd wireless-sensor-node-server
+sudo pip install .
 
-* sudo apt-get install git-core python python-dbg python-dev python-virtualenv 
-  ubuntu-dev-tools monit sqlite3 iptables-persistent python2.6-dev
-* as root, edit /etc/monit/monitrc, add lines "set daemon 10" and "include /etc/monit/conf.d/*"
-* as root copy the file monitrc into /etc/monit/conf.d
-* as root, edit /etc/defaults/monit and set the start variable to 1.
-* edit the start/stop_server/logger.sh scripts to match the paths that you used
-  for your repo.
-* from the root of the repo, run "make env" to create a python virtual env with
-  all the right dependencies in it
-* run sudo /etc/init.d/monit start
+# If using upstart...
+sudo cp upstart/* /etc/init
+sudo start wireless-sensor-logger
+sudo start wireless-sensor-server
 
 Connect to http://<your server>:8888
