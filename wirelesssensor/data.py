@@ -11,6 +11,7 @@ engine = sa.create_engine(settings.DATABASE, echo=settings.DATABASE_DEBUG)
 Session = orm.sessionmaker(bind=engine)
 BaseModel = declarative_base(bind=engine)
 
+
 class Reading(BaseModel):
     __tablename__ = "readings"
 
@@ -25,6 +26,7 @@ class Reading(BaseModel):
     reading = Column(Float(), nullable=False)
     checksum_sent = Column(Integer(), nullable=False)
     checksum_calc = Column(Integer(), nullable=False)
+
 
 BaseModel.metadata.create_all()
 

@@ -1,5 +1,6 @@
 import os
 
+
 def ensure_dir_exists(d):
     """
     Creates the directory d if it doesn't exist.  Raises an exception iff the
@@ -11,6 +12,7 @@ def ensure_dir_exists(d):
         pass
     if not os.path.isdir(d):
         raise RuntimeError("Failed to create dir %s" % dir)
+
 
 # Calculate useful directories relative to the project.
 _MY_DIR = os.path.dirname(__file__)

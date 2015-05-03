@@ -9,6 +9,7 @@ from data import Session, Reading
 
 log = logging.getLogger()
 
+
 def standalone():
     db = Session()
     while True:
@@ -37,12 +38,6 @@ def standalone():
             time.sleep(20)
 
 
-if __name__ == '__main__':
-    handler = logging.StreamHandler()
-    handler.setLevel(logging.DEBUG)
-    log.addHandler(handler)
-    handler = logging.FileHandler("/tmp/sensor-logger.log")
-    handler.setLevel(logging.DEBUG)
-    log.addHandler(handler)
-    log.setLevel(logging.DEBUG)
+def main():
+    logging.basicConfig(level=logging.DEBUG)
     standalone()

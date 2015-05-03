@@ -1,12 +1,12 @@
-# Copyright (c)Shaun Crampton 2012-2012. All rights reserved.
-
 import time
-
-import tornado
 import cjson
-
-from data import Session, Reading
 import datetime
+
+import tornado.web
+import settings
+import tornado
+from data import Session, Reading
+
 
 class ReadingsHandler(tornado.web.RequestHandler):
     def get(self):
@@ -22,8 +22,8 @@ class ReadingsHandler(tornado.web.RequestHandler):
         one_week_ago = now - datetime.timedelta(days=7)
         one_day_ago = now - datetime.timedelta(days=1)
         for r in (sess.query(Reading).
-                       filter(Reading.checksum_calc == Reading.checksum_sent).
-                       order_by(Reading.created_at)):
+                      filter(Reading.checksum_calc == Reading.checksum_sent).
+                      order_by(Reading.created_at)):
             if r.created_at < one_month_ago:
                 min_delta = datetime.timedelta(hours=2)
             elif r.created_at < one_week_ago:
@@ -45,3 +45,10 @@ class ReadingsHandler(tornado.web.RequestHandler):
                 self.flush()
 
         self.finish("]}")
+
+
+URLS = [
+    (r'^/readings/?$', ReadingsHandler),
+    ("^/(.*)$", tornado.web.StaticFileHandler, {"path": settings.STATIC_DIR,
+                                                "default_filename": "index.html"}),
+]

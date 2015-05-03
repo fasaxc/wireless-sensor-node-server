@@ -10,8 +10,18 @@ _log.addHandler(StreamHandler(sys.stderr))
 
 setup(
     name='sensor-node-logger',
-    version='0.1',
-    packages=find_packages('src'),
-    package_dir={'':'src'},
-    install_requires=["SQLAlchemy"],
-    )
+    version='0.2',
+    packages=find_packages(),
+    install_requires=[
+        "SQLAlchemy",
+        "pySerial",
+        "python-cjson",
+        "tornado",
+    ],
+    entry_points={
+        'console_scripts': [
+            'sensor-server = wirelesssensor.server:main',
+            'sensor-logger = wirelesssensor.logger:main',
+        ],
+    }
+)

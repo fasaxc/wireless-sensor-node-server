@@ -2,17 +2,14 @@
 
 import threading
 import logging
-import time
-
-import serial
 import tornado.web
 
-from data import Session, Reading
 import settings
 from tornado import httpserver
 from api import URLS
 
 log = logging.getLogger()
+
 
 def standalone():
     io_loop = tornado.ioloop.IOLoop.instance()
@@ -29,13 +26,8 @@ def standalone():
 
     io_loop.start()
 
-if __name__ == '__main__':
-    handler = logging.StreamHandler()
-    handler.setLevel(logging.DEBUG)
-    log.addHandler(handler)
-    handler = logging.FileHandler("/tmp/sensor-log-server.log")
-    handler.setLevel(logging.DEBUG)
-    log.addHandler(handler)
-    log.setLevel(logging.DEBUG)
+
+def main():
+    logging.basicConfig(level=logging.DEBUG)
     log.info("Starting up")
     standalone()
